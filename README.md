@@ -28,10 +28,6 @@ Load balancing ensures that the application will be highly available, in additio
 - This juumpbox is configured with an Security Group rule within Microsoft Azure to only accept SSH traffic from my home IP address and private SSH key pair.
 - From this jumpbox all Docker containers for the DVWA and ELK stack server can be accessed. 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
-
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
