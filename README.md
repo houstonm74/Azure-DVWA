@@ -4,11 +4,11 @@ A repository for information on a load-balanced DVWA instance deployed on Micros
 
 The files in this repository were used to configure the network depicted below.
 
-![TODO: Update the path with the name of your diagram](Images/diagram_filename.png)
+![](Diagrams/azure_diagram.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+NOTE: All IP addresses included in this Readme, as well as any Ansible hosts, config, and playbook files, are subject to change in your own Azure iteration of this project. Please explore this as a first troubleshooting option if you run into problems. 
 
 This document contains the following details:
 - Description of the Topology
@@ -38,10 +38,9 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | Gateway  | 10.0.0.4   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| ELK-VNET | ELK Stack| 10.1.0.4   | Linux
+| Web1     | DVWA     | 10.0.0.5   | Linux            |
+| Web2     | DVWA     | 10.0.0.6   | Linux            |
+| ELK-VNET | ELK Stack| 10.1.0.4   | Linux            |
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
@@ -70,7 +69,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![](Images/docker_ps_output.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -80,16 +79,15 @@ We have installed the following Beats on these machines:
 - Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat collects data on Docker container usage on the Web1 and Web2 servers.
+- Metricbeat collects information on system resource usage for Web1 and Web2 servers. 
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the config files to /etc/ansible/files.
+- Copy the config files for the Filebeat and Metricbeat playbooks to /etc/ansible/files -- modify these configs as well as your /etc/ansible/hosts file to make sure they're using the proper IPs for your iteration of this project. 
 - Update the config files to include the hosts to be acted upon, as well as correct IP addresses for ElasticSearch and Kibana hosts. 
-- Run the playbook, and navigate to the Kibana installation page to check that the installation worked as expected and Kibana is receiving data.
+- Run the playbook, and navigate to the Kibana installation page for the beats to check that the installation worked as expected and Kibana is receiving data.
 
 To verify that the ELK server is running, visit http://104.210.145.121:5601/app/kibana from an allowed IP address.
-
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
