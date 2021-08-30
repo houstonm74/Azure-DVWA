@@ -25,7 +25,7 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
 - A jumpbox is used as the only public-facing entitiy within the deployment. 
-- This juumpbox is configured with a Security Group rule within Microsoft Azure to only accept SSH traffic from the admin's IP address and private SSH key pair.
+- This jumpbox is configured with a Security Group rule within Microsoft Azure to only accept SSH traffic from the admin's IP address and private SSH key pair.
 - From this jumpbox all Docker containers for the DVWA and ELK stack server can be accessed. 
 
 The configuration details of each machine may be found below.
