@@ -6,7 +6,7 @@ The files in this repository were used to configure the network depicted below.
 
 ![](Diagrams/azure_diagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above, or select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
 NOTE: All IP addresses included in this Readme, as well as any Ansible hosts, config, and playbook files, are subject to change in your own Azure iteration of this project. Please explore this as a first troubleshooting option if you run into problems. 
 
@@ -25,11 +25,10 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
 - A jumpbox is used as the only public-facing entitiy within the deployment. 
-- This juumpbox is configured with an Security Group rule within Microsoft Azure to only accept SSH traffic from my home IP address and private SSH key pair.
+- This juumpbox is configured with a Security Group rule within Microsoft Azure to only accept SSH traffic from the admin's IP address and private SSH key pair.
 - From this jumpbox all Docker containers for the DVWA and ELK stack server can be accessed. 
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
@@ -70,7 +69,7 @@ The following screenshot displays the result of running `docker ps` after succes
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 - Web 1 and Web 2, running at local IPs 10.0.0.5 and 10.0.0.6 respectively.
-We have installed the following Beats on these machines:
+The following Beats are installed on these machines:
 - Filebeat 
 - Metricbeat
 
@@ -86,4 +85,4 @@ SSH into the control node and follow the steps below:
 - Update the config files to include the hosts to be acted upon, as well as correct IP addresses for ElasticSearch and Kibana hosts. 
 - Run the playbook, and navigate to the Kibana installation page for the beats to check that the installation worked as expected and Kibana is receiving data.
 
-To verify that the ELK server is running, visit http://104.210.145.121:5601/app/kibana from an allowed IP address.
+To verify that the ELK server is running, visit http://<elk_ip>:5601/app/kibana from an allowed IP address.
